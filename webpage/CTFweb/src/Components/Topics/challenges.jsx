@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+const apiUrl = import.meta.env.VITE_API_URL;
 import './challenges.css';
 
 function Challenges({ challenges }) {
@@ -20,7 +21,7 @@ function Challenges({ challenges }) {
 
     const challengeID = selectedChallenge; // Using challenge name as the ID
 
-    const response = await fetch('http://localhost:8000/api/challenges/checkFlag/', {
+    const response = await fetch(`${apiUrl}challenges/checkFlag/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,26 +1,18 @@
-# Step 1: Use an official Python image as the base image
-FROM python:3.12-slim as base
+# Base image for Python
+FROM python:3.12-slim
 
-# Step 2: Set the working directory inside the container
+# Set work directory in container
 WORKDIR /app
 
-# Step 3: Install pipenv to manage dependencies
-RUN pip install pipenv
+# Install dependencies
+COPY Pipfile Pipfile.lock /app/
+RUN pip install pipenv && pipenv install --deploy --ignore-pipfile
 
-# Step 4: Copy Pipfile and Pipfile.lock from the Webpage directory into the container
-COPY Webpage/Pipfile Webpage/Pipfile.lock /app/
+# Copy the backend code into the container
+COPY ./webpage/backend /app/
 
-# Step 5: Install dependencies inside the container
-RUN pipenv install --deploy --ignore-pipfile
-
-# Step 6: Copy the rest of the backend application code into the container
-COPY Webpage/backend /app/backend
-
-# Step 7: Expose port 8000 for the Django backend
+# Expose port 8000 for Django
 EXPOSE 8000
 
-# Step 8: Set environment variables for Django settings (optional, replace with your settings)
-ENV DJANGO_SETTINGS_MODULE=your_project_name.settings
-
-# Step 9: Run Django's development server (you can replace with Gunicorn or another WSGI server for production)
-CMD ["pipenv", "run", "python", "backend/manage.py", "runserver", "0.0.0.0:8000"]
+# Command to run Django
+CMD ["pipenv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]

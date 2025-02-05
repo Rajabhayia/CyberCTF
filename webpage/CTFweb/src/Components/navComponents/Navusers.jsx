@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FetchPoints from "./fetchPoints";
+const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css'
 
 function NavUsers() {
@@ -9,7 +10,7 @@ function NavUsers() {
     useEffect(() => {
         const globalUsers = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/usersData/load_users/', {
+                const response = await fetch(`${apiUrl}usersData/load_users/`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

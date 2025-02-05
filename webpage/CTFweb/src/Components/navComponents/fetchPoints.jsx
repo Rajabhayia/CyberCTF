@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css'
 
 function FetchPoints({username}) {
@@ -15,7 +16,7 @@ function FetchPoints({username}) {
         const fetchedPoints = async () => {
             try {
                 // Append the username as a query parameter
-                const url = `http://localhost:8000/api/usersData/load_points/?username=${username}`;
+                const url = `${apiUrl}usersData/load_points/?username=${username}`;
 
                 const response = await fetch(url, {
                     method: 'GET',

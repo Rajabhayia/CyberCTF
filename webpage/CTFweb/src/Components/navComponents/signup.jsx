@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css';
 
 function Signup() {
@@ -13,7 +14,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:8000/api/users/signup/', {
+    const response = await fetch(`${apiUrl}users/signup/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

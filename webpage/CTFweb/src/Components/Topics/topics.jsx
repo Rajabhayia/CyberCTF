@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Challenges from './challenges.jsx';
+const apiUrl = import.meta.env.VITE_API_URL;
 import './topics.css';
 
 function Topics() {
@@ -11,7 +12,7 @@ function Topics() {
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/challenges/challengesData/`, {
+        const response = await fetch(`${apiUrl}challenges/challengesData/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

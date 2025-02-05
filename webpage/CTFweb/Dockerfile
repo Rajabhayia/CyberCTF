@@ -1,20 +1,18 @@
-# Step 1: Use an official Node.js image as the base image
-FROM node:18-alpine as build
+# Use node:alpine as a base image for React
+FROM node:18-alpine
 
-# Step 2: Set the working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json (or yarn.lock) into the container
-COPY package.json package-lock.json ./
-
-# Step 4: Install app dependencies
+# Copy package.json and install dependencies
+COPY package.json package-lock.json /app/
 RUN npm install
 
-# Step 5: Copy the rest of the application code
-COPY . .
+# Copy all the React app files into the container
+COPY . /app/
 
-# Step 6: Expose port 5173 for the React app
+# Expose the port where the Vite server will run
 EXPOSE 5173
 
-# Step 7: Run the app in development mode using Vite
+# Start the React development server
 CMD ["npm", "run", "dev"]

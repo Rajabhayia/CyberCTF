@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FetchPoints from './fetchPoints';
+const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css';
 
 function Profile() {
@@ -19,7 +20,7 @@ function Profile() {
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/users/profile/?username=${username}`, {
+        const response = await fetch(`${apiUrl}users/profile/?username=${username}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ function Profile() {
       const updateProfile = async () => {
         const { username, email } = userData; // Destructure values from userData
         try {
-          const response = await fetch('http://localhost:8000/api/usersData/update_profile/', {
+          const response = await fetch(`${apiUrl}usersData/update_profile/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
