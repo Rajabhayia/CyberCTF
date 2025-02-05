@@ -1,0 +1,68 @@
+.navmain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 3%;
+    background: rgb(35, 34, 34);
+    color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger {
+    font-size: 32px;
+    color: #a3a0a0;
+    cursor: pointer;
+    display: block; /* Always show hamburger across all screen sizes */
+}
+
+.navbar {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 60px; /* Position dropdown below navbar */
+    left: 0;
+    background-color: rgb(35, 34, 34);
+    width: 100%;
+    z-index: 200;
+    flex-direction: column;
+}
+
+.navbar.open {
+    display: block; /* Show the dropdown when open */
+}
+
+.nav-link {
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #a3a0a0;
+    font-weight: 100;
+    margin-left: 25px;
+    position: relative;
+    width: 25%;
+}
+
+hr {
+    color: #a3a0a0;
+}
+
+/* content.jsx */
+
+.contentData {
+    margin-top: 50px;
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .contentData {
+      width: 90%;
+    }
+  }

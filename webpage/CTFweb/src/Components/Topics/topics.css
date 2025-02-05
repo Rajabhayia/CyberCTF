@@ -1,0 +1,90 @@
+/* Main container */
+.topics {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: default;
+}
+
+/* Topic headers container */
+.topicHeaders {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: default;
+}
+
+/* Main topic text style */
+.mainTopic {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(131, 130, 130);
+  background-color: rgb(35, 34, 34);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.mainTopic:hover {
+  background-color: #444;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.Content {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Button inside modal */
+.modalContent button {
+  background-color: #5f1710;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.modalContent button:hover {
+  background-color: #e2574b;
+}

@@ -1,0 +1,200 @@
+/* SubTopic container */
+.subTopic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 1rem;
+}
+
+.challengeHit-Nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Challenge item box */
+.challenges {
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: 150px;
+  border-radius: 8px;
+  margin: 1rem;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.challenges:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+/* Popup overlay */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure popup appears above other content */
+  cursor: default;
+}
+
+/* Popup content */
+.popupContent {
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.challengeHit p {
+  font-weight: 500;
+  color: rgb(160, 160, 160);
+}
+
+/* Close button style */
+.popupContent button {
+  background: transparent;
+  color: rgb(160, 160, 160);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 30px;
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  .subTopic {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .subTopic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popupContent {
+    width: 90%;
+  }
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 10px;
+}
+
+.eventDetails form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.eventDetails form button {
+  font-size: 16px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px black;
+  width: 42%;
+  height: 2.5rem;
+}
+
+.eventDetails form input {
+  height: 2.5rem;
+  width: 43vw;
+  border-radius: 10px;
+  background: #444;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0px 0px 10px black;
+}
+
+.eventDetails form input::placeholder {
+  color: rgb(143, 145, 148);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+/* Flag Status Popup Styles */
+.xflag1,
+.xflag2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgb(223, 220, 220);
+  
+  width: 30%;
+  transition: all 0.5s ease; /* Smooth transition for background and opacity */
+}
+
+/* Green Flag - Correct */
+.xflag1 {
+  border: 2px solid forestgreen;
+  background: rgba(116, 211, 58, 0.2); 
+  box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.3); /* Subtle green shadow */
+}
+
+/* Red Flag - Incorrect */
+.xflag2 {
+  border: 2px solid red;
+  background: rgba(217, 22, 22, 0.3);  /* Smooth red gradient */
+  box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3); /* Subtle red shadow */
+}
+
+.flagPopup {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 70%;
+  left: 0;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  width: 100%;
+  cursor: default;
+}
+.flagPopup button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  color: wheat;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 5px;
+  height: 0;
+  width: 3vw;
+  text-align: top;
+  border: none;
+}

@@ -1,0 +1,145 @@
+.auth-form {
+    width: 80%;
+    margin: auto;
+    cursor: default;
+    background-color: rgb(44, 47, 48);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.signup-form input {
+    height: 2.5rem;
+    width: 60%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    text-align: center;
+}
+
+input::placeholder {
+    text-align: center;
+    font-style: italic;
+    color: #aaa;
+}
+
+.signup-form input:focus {
+    border: 1px solid #007bff;
+}
+
+.signup-form button {
+    width: 50%;
+    height: 2.8rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.signup-form button:hover {
+    background-color: #0056b3;
+    width: 48%;
+    height: 2.7rem;
+    cursor: pointer;
+}
+
+.signup-form {
+    margin-bottom: 2rem;
+}
+
+/* notification.jsx */
+
+
+.notification, .NavUsers_Main {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(35, 34, 34);
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    height: 33rem;
+    width: 75%;
+}
+
+.notification-header, .NavUsers_Header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 4rem;
+    padding-left: 20px;
+    border-bottom: 2px solid rgb(26, 25, 25);
+    box-shadow: 0px 5px 10px rgb(12, 12, 12);
+    border-radius: 40px;
+}
+
+.notification-header, .NavUsers_Header p {
+    font-size: 25px;
+    font-weight: 200;
+}
+
+.notification-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.profile {
+    cursor: default;
+}
+
+/* NavUsers Styling*/
+.NavUsers_Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 2px solid rgb(26, 25, 25);
+    box-shadow: 0px 5px 10px rgb(12, 12, 12);
+    border-radius: 40px;
+}
+
+
+.NavUsers_Header p {
+    font-size: 23px;
+    font-weight: 200;
+}
+
+.NavUsers_Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    height: 100%;
+    margin: 15px 25px;
+    gap: 0.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+.fetchedPoint {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    font-size: 18px;
+}
+
+.pointsEarned {
+    display: flex;
+    gap: 0.5rem;
+}
