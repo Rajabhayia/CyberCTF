@@ -3,39 +3,29 @@ services:
   # Backend Service (Django)
   backend:
     build:
-      context: ./webpage  # This points to the webpage directory where your backend Dockerfile is
+      context: ./  # This points to the webpage directory where your backend Dockerfile is
       dockerfile: Dockerfile.backend  # Dockerfile for backend in /webpage (specify if named differently)
     container_name: backend
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - ./webpage/backend:/app  # Mount the backend code into the container
+      - ./backend:/app  # Mount the backend code into the container
+      - ./backend/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"  # Expose Django app on port 8000
-    depends_on:
-      - db  # Ensure the backend waits for the database to be ready
 
   # Frontend Service (React with Vite)
   frontend:
     build:
-      context: ./webpage/CTFweb  # Path to frontend directory
+      context: ./CTFweb  # Path to frontend directory
       dockerfile: Dockerfile  # Dockerfile for React frontend inside /webpage/CTFweb
     container_name: frontend
     ports:
       - "5173:5173"  # Expose React app on port 5173
     environment:
-      - VITE_API_URL=http://backend:8000/api/  # Pass backend URL to the frontend
+      - VITE_API_URL=http://44.212.23.180:8000/api/  # Pass backend URL to the frontend
     depends_on:
       - backend  # Ensure frontend waits for backend to be ready
-
-  # Database Service (SQLite or any database you're using)
-  db:
-    image: sqlite:latest  # Assuming SQLite for simplicity, but can be replaced with PostgreSQL or MySQL
-    container_name: db
-    volumes:
-      - ./webpage/backend/db.sqlite3:/db.sqlite3  # Persist the database file (if SQLite)
-    networks:
-      - default  # Connect to the same network for all services
 
 # Network configuration (optional but recommended)
 networks:

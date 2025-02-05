@@ -9,7 +9,7 @@ COPY Pipfile Pipfile.lock /app/
 RUN pip install pipenv && pipenv install --deploy --ignore-pipfile
 
 # Copy the backend code into the container
-COPY ./webpage/backend /app/
+COPY ./backend /app/
 
 # Expose port 8000 for Django
 EXPOSE 8000
