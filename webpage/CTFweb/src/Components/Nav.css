@@ -66,3 +66,14 @@ hr {
       width: 90%;
     }
   }
+
+  @media (max-width: 480px) {
+    .nav-link {
+      width: 40%;
+    }
+
+    hr {
+        width: 90%;
+        margin: 20px auto;
+    }
+  }

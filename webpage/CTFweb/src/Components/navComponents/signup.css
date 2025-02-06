@@ -101,6 +101,12 @@ input::placeholder {
     cursor: default;
 }
 
+@media (max-width: 480px) {
+    .profile p {
+      font-size: 1.2rem;
+    }
+  }
+
 /* NavUsers Styling*/
 .NavUsers_Header {
     display: flex;
@@ -124,11 +130,10 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
+    align-items: center;
     height: 100%;
-    margin: 15px 25px;
+    padding-top: 15px;
     gap: 0.5rem;
-    align-items: start;
     width: 100%;
 }
 

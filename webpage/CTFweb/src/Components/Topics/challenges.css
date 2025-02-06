@@ -2,7 +2,7 @@
 .subTopic {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.2rem;
   justify-items: center;
   margin-top: 1rem;
 }
@@ -90,7 +90,25 @@
 
 @media (max-width: 480px) {
   .subTopic {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+  }
+  .challenges {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    width: 100vw;
+    border-radius: 8px;
+    margin: auto;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+
   }
 
   .popupContent {
