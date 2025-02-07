@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FetchPoints from './fetchPoints';
 const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css';
 
@@ -42,31 +41,6 @@ function Profile() {
     fetchProfile();
   }, [navigate]);
 
-  useEffect(() => {
-    if (userData) {
-      const updateProfile = async () => {
-        const { username, email } = userData; // Destructure values from userData
-        try {
-          const response = await fetch(`${apiUrl}usersData/update_profile/`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, email }),
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-          }
-        } catch (error) {
-          console.error('Error updating profile:', error);
-          setError('There was an error updating the profile.');
-        }
-      };
-
-      updateProfile(); // Automatically trigger the update when userData is available
-    }
-  }, []);
 
   if (error) {
     return <div>{error}</div>;
@@ -81,8 +55,7 @@ function Profile() {
       <h2>Welcome, {userData.username}!</h2>
       <p>Email: {userData.email}</p>
       <div className="pointsEarned">
-        <p>Points earned: </p>
-        <FetchPoints username={userData.username}/>
+        <p>Points earned: {userData.points}</p>
       </div>
     </div>
   );

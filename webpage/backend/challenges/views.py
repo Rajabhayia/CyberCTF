@@ -5,14 +5,13 @@ import os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .mongo import get_database
+from mongo import get_database
 
 @api_view(['GET'])
 def load_topics(request):
     db = get_database('challengesData')
     collection = db['challenges']
     
-    #fetching all challenges in collection
     challenges_data = list(collection.find())
     
     for challenge in challenges_data:

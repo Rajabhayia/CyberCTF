@@ -6,21 +6,19 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from .serializers import UserSignupSerializer, UserLoginSerializer, UserProfileSerializer
+from mongo import get_database
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-
-# Helper function to save data in a JSON file
-def save_user_data(username, data):
-    if not os.path.exists(DATA_DIR):
-        os.makedirs(DATA_DIR)
-    with open(os.path.join(DATA_DIR, f'{username}.json'), 'w') as f:
-        json.dump(data, f)
 
 # Helper function to load user data from JSON
 def load_user_data(username):
     try:
-        with open(os.path.join(DATA_DIR, f'{username}.json'), 'r') as f:
-            return json.load(f)
+        db = get_database('usersData')
+        collection = db[username]
+        
+        usersData = list(collection.find())
+        for Data in usersData:
+            Data.pop('_id', None)
+        return usersData
     except FileNotFoundError:
         return None
 
@@ -30,7 +28,7 @@ def signup(request):
     if request.method == 'POST':
         serializer = UserSignupSerializer(data=request.data)
         if serializer.is_valid():
-            username = serializer.validated_data['username']
+            username = serializer.validated_data['username'].capitalize()  # Capitalize the first letter
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
             confirm_password = serializer.validated_data['confirm_password']
@@ -46,15 +44,27 @@ def signup(request):
             # Hash the password using bcrypt
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-            # Save user data in JSON file
+            # Prepare user data to be inserted into MongoDB, including points
             user_data = {
                 'username': username,
                 'email': email,
-                'password': hashed_password
+                'password': hashed_password,
+                'points': 0  # Initialize points to 0
             }
-            save_user_data(username, user_data)
+
+            # Get the database and create a collection for the user
+            db = get_database('usersData')  # Assuming the database is 'usersData'
+            collection = db[username]  # Use the username as the collection name
+            
+            # Insert the user data into the collection
+            collection.insert_one(user_data)
+
+            # Return a response indicating success
             return Response({'detail': 'User created successfully.'}, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 # Login API
 @api_view(['POST'])
@@ -67,8 +77,11 @@ def login(request):
             
             # Load user data
             user_data = load_user_data(username)
-            if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data['password'].encode('utf-8')):
-                return Response({'detail': 'Login successful.'}, status=status.HTTP_200_OK)
+            print(user_data)
+            if user_data:
+                user_data = user_data[0]
+                if bcrypt.checkpw(password.encode('utf-8'), user_data['password'].encode('utf-8')):
+                    return Response({'detail': 'Login successful.'}, status=status.HTTP_200_OK)
             return Response({'detail': 'Invalid username or password.'}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -79,6 +92,7 @@ def profile(request):
     if username:
         user_data = load_user_data(username)
         if user_data:
+            user_data = user_data[0]
             serializer = UserProfileSerializer(user_data)
             return Response(serializer.data)
         return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)

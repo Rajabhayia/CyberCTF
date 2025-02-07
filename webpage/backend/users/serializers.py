@@ -14,3 +14,4 @@ class UserLoginSerializer(serializers.Serializer):
 class UserProfileSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=150)
     email = serializers.EmailField()
+    points = serializers.IntegerField()
