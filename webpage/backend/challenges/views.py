@@ -5,31 +5,40 @@ import os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from .mongo import get_database
 
+@api_view(['GET'])
 def load_topics(request):
-    file_path = os.path.join(settings.BASE_DIR, 'challengesData', 'challenges.json')
-
-    with open(file_path, 'r') as f:
-        topics_data = json.load(f)
-    return JsonResponse(topics_data, safe=False)
+    db = get_database('challengesData')
+    collection = db['challenges']
+    
+    #fetching all challenges in collection
+    challenges_data = list(collection.find())
+    
+    for challenge in challenges_data:
+        challenge.pop('_id', None)
+    
+    return JsonResponse(challenges_data, safe=False)
 
 
 def load_flag(challenge_id, flag):
     try:
-        file_path = os.path.join(settings.BASE_DIR, 'challengesData', 'flags.json')
-        with open(file_path, 'r') as f:
-            flags_data = json.load(f)
+        db = get_database('challengesData')
+        collection = db['flags']
+        flags_data = list(collection.find())
 
-        for challenge in flags_data:
-            for category, flags in challenge.items():
+        for challenge_data in flags_data:
+            challenge_data.pop('_id', None)
+            for category, flags in challenge_data.items():
                 if challenge_id in flags:
                     if flags[challenge_id] == flag:
                         return True 
 
         return False
 
-    except FileNotFoundError:
-        return None 
+    except Exception as e:
+        print(f"Error occured: {e}")
+        return False
 
 @api_view(['POST'])
 def checkFlag(request):

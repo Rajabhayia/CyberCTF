@@ -12,6 +12,7 @@ django-debug-toolbar = "*"
 google-auth = "*"
 django-allauth = "*"
 bcrypt = "*"
+pymongo = "*"
 
 [dev-packages]
 
