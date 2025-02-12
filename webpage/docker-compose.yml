@@ -34,11 +34,11 @@ services:
       - backend_network
 
   # MongoDB Service (MongoDB Atlas in this case, no need for local container)
-  mongodb:
-    image: mongo:latest  # No longer needed if using MongoDB Atlas
-    container_name: mongodb
-    networks:
-      - backend_network
+  # mongodb:
+  #   image: mongo:latest  # No longer needed if using MongoDB Atlas
+  #   container_name: mongodb
+  #   networks:
+  #     - backend_network
 
 networks:
   backend_network:
