@@ -23,4 +23,4 @@ services:
     ports:
       - "5173:5173"  # Expose React app on port 5173
     environment:
-      - VITE_API_URL=http://13.235.73.194:8000/api/  # Pass backend URL to the frontend
+      - VITE_API_URL=http://65.1.148.188:8000/api/  # Pass backend URL to the frontend
