@@ -12,7 +12,7 @@ django-debug-toolbar = "*"
 google-auth = "*"
 django-allauth = "*"
 bcrypt = "*"
-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
