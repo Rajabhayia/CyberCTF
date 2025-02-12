@@ -1,0 +1,197 @@
+.joinRequestSent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 1.5rem;
+}
+
+.joinRequestSent button {
+    height: 2rem;
+    width: 35%;
+    background: rgb(30, 30, 122);
+    color: rgb(185, 182, 182);
+    border: 2px solid rgb(30, 30, 122);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    font-size: 15px;
+}
+
+.joinRequestSent button:hover {
+    height: 1.8rem;
+    width: 33%;
+    font-size: 13px;
+    background: blue;
+    color: whitesmoke;
+    
+    transition: ease-in;
+}
+
+.teamDetails {
+    width: 80%;
+    padding: 1rem;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 100px;
+}
+
+.subteamDetails button{
+    background: rgb(37, 36, 36);
+    border: 2px solid rgb(34, 32, 32);
+    box-shadow: 0px 0px 10px rgb(33, 33, 33);
+    color: rgb(162, 173, 183);
+    height: 3.8rem;
+    width: 60%;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.subteamDetails button:hover {
+    height: 3.5rem;
+    width: 55%;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media (max-width: 550px) {
+    .teamDetails{
+        width: 100%;
+    }
+
+    .teamDetails p{
+        font-size: 16px;
+    }
+
+    .subteamDetails button {
+        height: 3.5rem;
+        width: 90%;
+        font-size: 15px;
+    }
+
+    .subteamDetails button:hover{
+        height: 3rem;
+        width: 80%;
+        font-size: 13px;
+    }
+    
+}
+
+@media (max-width:440px ) {
+    .teamDetails {
+        gap: 1.2rem;
+    }
+}
+
+/* Popup background */
+.popup-teamDetails {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure the popup is on top of all other content */
+}
+
+/* Popup content box */
+.popup-content-teamdetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    gap: 1rem;
+    background-color: rgb(52, 52, 52);
+    padding: 20px;
+    border-radius: 8px;
+    height: 70vh;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button styling */
+.popup-content-teamdetails  button {
+    height: 2.2rem;
+    width: 10%;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fetched-team-users{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding-left: 2rem;
+    gap: 2rem;
+    height: 50vh;
+    width: 100%;
+
+}
+
+.request-item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    height: 27vh;
+    width: 40%;
+    padding: 1rem;
+    background: rgb(38, 38, 38);
+    box-shadow: 0px 0px 20px black;
+}
+
+.request-item button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 15px;
+    color: rgb(188, 194, 200);
+    height: 2.2rem;
+    width: 40%;
+}
+
+.popup-content-teamdetails button:hover {
+    background-color: #ab0d0d;
+}
+
+.request-item form {
+    margin-top: 1.5rem;
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.request-item form button {
+    height: 2rem;
+    width: 40%;
+    background: rgb(32, 32, 32);
+    box-shadow: 0px 0px 10px black;
+    color: rgb(194, 194, 194);
+}
+
+.request-item form button:hover {
+    height: 1.9rem;
+    width: 38%;
+    color: aliceblue;
+    background: black;
+}

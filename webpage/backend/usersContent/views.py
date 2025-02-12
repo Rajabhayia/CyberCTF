@@ -10,12 +10,15 @@ from mongo import get_database
 # Helper function to load all usernames from the data directory
 def load_all_usernames():
     try:
-        usernames = []
-        db = get_database('usersData')
-        collection_names = db.list_collection_names()
-        for collection in collection_names:
-            usernames.append(collection)
-        return usernames
+        user_data = []
+        myDatabase = get_database('usersData')
+        myCollection = myDatabase['userCollection']
+        for collection in myCollection.find({}, {'username':1, 'points':1, '_id': 0}):
+            user_data.append({
+                'username': collection['username'],
+                'points': collection['points']
+                })
+        return user_data
     except Exception as e:
         return str(e)
 
@@ -36,7 +39,7 @@ def load_users(request):
 
 #API views to load points
 @api_view(['GET'])
-def load_points(request):
+def load_team(request):
     if request.method == 'GET':
         username = request.GET.get('username')  
 
@@ -44,17 +47,9 @@ def load_points(request):
             return JsonResponse({'error': 'Username parameter is required'}, status=400)
 
         db = get_database('usersData')
-        usersContent = db[username]
-
-        try:
-            user_Data = list(usersContent.find())
-            for data in user_Data:
-                data.pop('_id', None)
-            
-            if user_Data:
-                points = user_Data[0].get('points', 0)
-                return Response({points})
-            else:
-                return JsonResponse({'error': 'User not found'}, status=404)
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Failed to decode JSON data'}, status=500)
+        usercollection = db['usercollection']
+        user = usercollection.find_one({'username': username},{'_id':0, 'username':1, 'points':1})
+        if user:
+            return Response({user.get('points', 0)}) 
+        else:
+            return JsonResponse({'error': 'User not found'}, status=404)

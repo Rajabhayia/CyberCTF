@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import FetchPoints from "./fetchPoints";
 const apiUrl = import.meta.env.VITE_API_URL;
 import './signup.css'
 
@@ -48,10 +47,8 @@ function NavUsers() {
             <div className="NavUsers_Content">
                 {users.map((user, index) => (
                     <div key={index} className="fetchedPoint">
-                        <div className="fetchedPoint-content">{user}</div>
-                        <div className="fetchedPoint-content">
-                            <FetchPoints username={user}/>
-                        </div>
+                        <div className="fetchedPoint-content">{user.username}</div>
+                        <div className="fetchedPoint-content">{user.points}</div>
                     </div>
                     ))}
             </div>

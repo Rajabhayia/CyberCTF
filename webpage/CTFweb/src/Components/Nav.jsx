@@ -47,7 +47,7 @@ function Nav() {
           <Link to="/navUsers" className="nav-link" onClick={closeDropdown}>
             Users
           </Link>
-          <Link to="/" className="nav-link" onClick={closeDropdown}>
+          <Link to="/teams" className="nav-link" onClick={closeDropdown}>
             Teams
           </Link>
           <Link to="/" className="nav-link" onClick={closeDropdown}>
@@ -72,7 +72,7 @@ function Nav() {
               <Link to="/settings" className="nav-link" onClick={closeDropdown}>
                 ⚙️ Settings
               </Link>
-              <button onClick={handleLogout} className="nav-link logout-btn">
+              <button onClick={() => {handleLogout(); closeDropdown();}} className="nav-link logout-btn">
                 🚪 Logout
               </button>
             </>

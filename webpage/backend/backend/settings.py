@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # settings.py
 
-MONGO_URI = "mongodb://localhost:27017/"
+MONGO_URI = "mongodb+srv://CyberCTF:VaiiMl2KwTfqTUna@cyberctf.ynzom.mongodb.net/?retryWrites=true&w=majority&appName=CyberCTF"
 
 
 
@@ -135,4 +135,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
