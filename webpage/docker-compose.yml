@@ -13,8 +13,8 @@ services:
       - ./backend:/app  # Mount the backend code into the container
     ports:
       - "8000:8000"  # Expose Django app on port 8000
-    depends_on:
-      - mongodb  # Ensure backend waits for MongoDB to be ready
+    # depends_on:
+    #   - mongodb  # Ensure backend waits for MongoDB to be ready
     networks:
       - backend_network
 
