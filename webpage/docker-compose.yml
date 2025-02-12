@@ -8,11 +8,15 @@ services:
     container_name: backend
     environment:
       - PYTHONUNBUFFERED=1
+      - MONGO_URI=mongodb+srv://CyberCTF:VaiiMl2KwTfqTUna@cyberctf.ynzom.mongodb.net/?retryWrites=true&w=majority&appName=CyberCTF
     volumes:
       - ./backend:/app  # Mount the backend code into the container
-      - ./backend/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"  # Expose Django app on port 8000
+    depends_on:
+      - mongodb  # Ensure backend waits for MongoDB to be ready
+    networks:
+      - backend_network
 
   # Frontend Service (React with Vite)
   frontend:
@@ -26,8 +30,16 @@ services:
       - VITE_API_URL=http://13.232.52.188:8000/api/  # Pass backend URL to the frontend
     depends_on:
       - backend  # Ensure frontend waits for backend to be ready
+    networks:
+      - backend_network
 
-# Network configuration (optional but recommended)
+  # MongoDB Service (MongoDB Atlas in this case, no need for local container)
+  mongodb:
+    image: mongo:latest  # No longer needed if using MongoDB Atlas
+    container_name: mongodb
+    networks:
+      - backend_network
+
 networks:
-  default:
-    driver: bridge  # This allows the services to communicate with each other
+  backend_network:
+    driver: bridge  # Enables communication between services on the same network
