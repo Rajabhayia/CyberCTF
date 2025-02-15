@@ -11,7 +11,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error message on each new attempt
+    setError('');
 
     try {
       const response = await fetch(`${apiUrl}users/login/`, {

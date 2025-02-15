@@ -51,7 +51,8 @@ def signup(request):
                 'password': hashed_password,
                 'points': 0, 
                 'team': None,
-                'message': None
+                'message': None,
+                'correct': None
             }
 
             db = get_database('usersData')

@@ -5,6 +5,7 @@
   gap: 1.2rem;
   justify-items: center;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .challengeHit-Nav {
@@ -20,7 +21,7 @@
   justify-content: center;
   align-items: center;
   height: 120px;
-  width: 150px;
+  width: 100%;
   border-radius: 8px;
   margin: 1rem;
   cursor: pointer;
@@ -82,13 +83,33 @@
 }
 
 /* Responsive Layouts */
-@media (max-width: 768px) {
+
+@media (min-width: 1200px) {
   .subTopic {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .challenges {
+    width: 95%;
   }
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 950px) {
+  .subTopic {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2,1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .subTopic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3,1fr);
+  }
+}
+
+
+@media (max-width: 500px) {
   .subTopic {
     display: flex;
     flex-direction: column;
@@ -215,4 +236,22 @@
   width: 3vw;
   text-align: top;
   border: none;
+}
+
+.solvedQuestions {
+  border: 2px solid green;
+  padding: 0.2rem;
+  width: 50%;
+  border-radius: 10px;
+  background: rgba(22, 166, 22, 0.721);
+  box-shadow: 0px 0px 12px rgb(0, 0, 0);
+  color: rgb(214, 214, 141);
+}
+
+.green {
+  background: green;
+}
+
+.green:hover {
+  background: greenyellow;
 }

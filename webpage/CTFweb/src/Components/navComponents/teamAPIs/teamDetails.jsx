@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LeaderApproval from "./leaderApproval";
+import HandleRemoval from "./handleRemove";
 import './team.css';
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -72,9 +73,9 @@ function TeamDetails({ teamName }) {
                             username={request.username}
                             userTeam={teamName}
                             teamLeader={teamData.leaderName}
-                            teamPoints={request.points}
                             onRequestUpdate={handleRequestUpdate}
-                            currentUser = {curentUser}
+                            currentUser={curentUser}
+                            className='leaderAprroval-buttons'
                         />
                     </div>
                 ));
@@ -99,7 +100,12 @@ function TeamDetails({ teamName }) {
                     <div key={index} className="request-item">
                         <p><strong>Username:</strong> {member.username}</p>
                         <p><strong>Points:</strong> {member.points}</p>
-                        <button>remove</button>
+                        <HandleRemoval
+                            username={member.username}
+                            points={member.points}
+                            teamLeader={curentUser}
+                            onRemovalSuccess={closePopup}  // Pass the closePopup function to HandleRemoval
+                        />
                     </div>
                 ));
             } else {

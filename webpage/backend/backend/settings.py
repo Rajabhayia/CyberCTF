@@ -79,8 +79,8 @@ DATABASES = {
 
 # settings.py
 
-MONGO_URI = "mongodb+srv://CyberCTF:VaiiMl2KwTfqTUna@cyberctf.ynzom.mongodb.net/?retryWrites=true&w=majority&appName=CyberCTF"
-
+#MONGO_URI = "mongodb+srv://CyberCTF:VaiiMl2KwTfqTUna@cyberctf.ynzom.mongodb.net/?retryWrites=true&w=majority&appName=CyberCTF"
+MONGO_URI = "mongodb://localhost:27017/"
 
 
 # Password validation

@@ -10,10 +10,9 @@ from ..mongoUsers import get_database
 @api_view(['POST'])
 def leaderApproval(request):
     if request.method == 'POST':
-        userTeam = request.data.get('userTeam')  # The team to which the user wants to join
-        username = request.data.get('username')  # The username of the user whose request is to be approved
+        userTeam = request.data.get('userTeam') 
+        username = request.data.get('username')  
         teamLeader = request.data.get('teamLeader')
-        teamPoints = request.data.get('teamPoints')
         currentUser = request.data.get('currentUser')
 
         if not userTeam or not username or not teamLeader:
@@ -26,6 +25,10 @@ def leaderApproval(request):
 
         # Retrieve the requested team data
         userRequested_Team = team_col.find_one({'TeamName': userTeam, 'leaderName': teamLeader}, {'TeamName': 1, 'leaderName': 1, 'request': 1, 'members': 1, 'points': 1, '_id': 0})
+        userPoints = user_col.find_one({'username': username, 'message': userTeam}, {'points':1, '_id':0})
+        
+        if userPoints:
+            userPoint = userPoints.get('points')
 
         if not userRequested_Team:
             return Response({'detail': 'You are not permitted to accept this request'}, status=status.HTTP_404_NOT_FOUND)
@@ -45,13 +48,13 @@ def leaderApproval(request):
             return Response({'detail': 'No pending join request found for this user.'}, status=status.HTTP_404_NOT_FOUND)
 
         # Accept the request: Update the 'members' array and points
-        new_points = teamPoints + userRequested_Team.get('points', 0)
+        new_points = userPoint + userRequested_Team.get('points', 0)
 
         # Update team data: If 'members' is None, initialize it with the new username
         if userRequested_Team.get('members') is None :
             join_request = {
                     'username': username,
-                    'points': userRequested_Team.get('points',0)
+                    'points': new_points
                 }
             team_col.update_one(
                 {'TeamName': userTeam, 'leaderName': teamLeader},
@@ -60,7 +63,7 @@ def leaderApproval(request):
         else:
             join_request = {
                     'username': username,
-                    'points': userRequested_Team.get('points',0)
+                    'points': userPoint
                 }
             team_col.update_one(
                 {'TeamName': userTeam, 'leaderName': teamLeader},

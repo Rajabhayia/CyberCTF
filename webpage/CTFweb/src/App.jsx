@@ -1,16 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from './Components/Nav.jsx';
-import Content from './Components/content.jsx';
 import Rules from './Components/navComponents/Rules.jsx';
 import NavUsers from "./Components/navComponents/Navusers.jsx";
+import Teams from "./Components/navComponents/teams.jsx";
+import Scoreboard from "./Components/navComponents/scoreboard.jsx";
+import Content from './Components/content.jsx';
+import Notification from "./Components/navComponents/notification.jsx";
 import Login from "./Components/navComponents/login.jsx";
 import Signup from "./Components/navComponents/signup.jsx";
+import Team from "./Components/navComponents/team.jsx";
 import Profile from "./Components/navComponents/profile.jsx";
 import Settings from "./Components/navComponents/settings.jsx";
-import Notification from "./Components/navComponents/notification.jsx";
-import Teams from "./Components/navComponents/teams.jsx";
-import Team from "./Components/navComponents/team.jsx";
 
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/navUsers" element={<NavUsers />} />
             <Route path="/teams" element={<Teams />} />
+            <Route path="/scoreboard" element={<Scoreboard />} />
             <Route path="/team" element={<Team />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />

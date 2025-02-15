@@ -3,7 +3,7 @@ services:
   # Backend Service (Django)
   backend:
     build:
-      context: ./backend  # This points to the backend directory where Dockerfile.backend exists
+      context: ./  # This points to the backend directory where Dockerfile.backend exists
       dockerfile: Dockerfile.backend
     container_name: backend
     environment:

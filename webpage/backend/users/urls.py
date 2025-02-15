@@ -2,7 +2,7 @@
 from django.urls import path
 from .views import login, signup, profile
 from .views import createTeam, joinTeam, leaderApproval, rejectPendingRequest
-from .views import fetchTeamDetails, deleteRequest
+from .views import fetchTeamDetails, deleteRequest, handleRemoval
 
 urlpatterns = [
     path('signup/', signup, name='signup'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('leaderApproval/', leaderApproval, name='leaderApproval'),
     path('deleteRequest/', deleteRequest, name='deleteRequest'),
     path('rejectPendingRequest/', rejectPendingRequest, name='rejectPendingRequest'),
+    path('handleRemoval/', handleRemoval, name='handleRemoval' ),
 ]

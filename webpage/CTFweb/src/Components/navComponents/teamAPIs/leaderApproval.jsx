@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 
-const LeaderApproval = ({ userTeam, username, teamLeader, teamPoints, onRequestUpdate, currentUser }) => {
+const LeaderApproval = ({ userTeam, username, teamLeader, onRequestUpdate, currentUser }) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const LeaderApproval = ({ userTeam, username, teamLeader, teamPoints, onRequestU
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userTeam, username, teamLeader, teamPoints, currentUser }),
+                body: JSON.stringify({ userTeam, username, teamLeader, currentUser }),
             });
 
             const data = await response.json();
@@ -73,7 +73,7 @@ const LeaderApproval = ({ userTeam, username, teamLeader, teamPoints, onRequestU
     };
 
     return (
-        <div>
+        <div className='leaderApproval-buttons'>
             {loading ? (
                 <p>Loading...</p>
             ) : (

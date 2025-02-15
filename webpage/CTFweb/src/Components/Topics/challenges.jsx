@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 const apiUrl = import.meta.env.VITE_API_URL;
 import './challenges.css';
 
-function Challenges({ challenges }) {
+function Challenges({ challenges, solvedFlags, updateSolvedFlags }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFlagStatusOpen, setIsFlagStatusOpen] = useState(false);
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [flag, setFlag] = useState('');
-  const [flagStatus, setFlagStatus] = useState(''); // Stores flag status: 'correct' or 'incorrect'
+  const [flagStatus, setFlagStatus] = useState('');
+  const username = sessionStorage.getItem('username');
 
   const togglePopup = (challenge) => {
     setSelectedChallenge(challenge);
@@ -19,27 +20,35 @@ function Challenges({ challenges }) {
 
     if (!selectedChallenge) return;
 
-    const challengeID = selectedChallenge; // Using challenge name as the ID
+    const challengeID = selectedChallenge; 
 
     const response = await fetch(`${apiUrl}challenges/checkFlag/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ challengeID, flag }), // Send both challengeID and flag to backend
+      body: JSON.stringify({ username, challengeID, flag }),
     });
 
     if (response.ok) {
       setFlagStatus('correct');
+      updateSolvedFlags(selectedChallenge); // Update the solvedFlags in the parent component
     } else {
-      setFlagStatus('incorrect');
+      const errorData = await response.json();
+      if (response.status === 401 && errorData.detail === 'Login first') {
+        setFlagStatus('login_first');
+      } else {
+        setFlagStatus('oops! the flag is incorrect');
+      }
     }
-    setIsFlagStatusOpen(true); // Show flag status popup
+    setIsFlagStatusOpen(true);
   };
 
   // Challenge Popup Content
   let popupContent = null;
   if (isPopupOpen && selectedChallenge) {
+    const isSolved = solvedFlags.includes(selectedChallenge);
+
     popupContent = (
       <div className="popup">
         <div className="popupContent">
@@ -53,15 +62,21 @@ function Challenges({ challenges }) {
           </div>
           <div className="eventDetails">
             <p>No Data available</p>
-            <form onSubmit={submit}>
-              <input
-                type="text"
-                placeholder="Enter your flag here"
-                value={flag}
-                onChange={(e) => setFlag(e.target.value)}
-              />
-              <button>Submit</button>
-            </form>
+            {isSolved ? (
+              <div className="solvedQuestions">
+                <p>Solved</p>
+              </div>
+            ) : (
+              <form onSubmit={submit}>
+                <input
+                  type="text"
+                  placeholder="Enter your flag here"
+                  value={flag}
+                  onChange={(e) => setFlag(e.target.value)}
+                />
+                <button>Submit</button>
+              </form>
+            )}
           </div>
         </div>
       </div>
@@ -74,7 +89,7 @@ function Challenges({ challenges }) {
     flagStatusContent = (
       <div className="flagPopup">
         <div className={`xflag${flagStatus === 'correct' ? '1' : '2'}`}>
-          {flagStatus === 'correct' ? 'Well done! The flag is correct.' : 'Oops! The flag is incorrect.'}
+          {flagStatus === 'correct' ? 'Well done! The flag is correct.' : `${flagStatus}`}
         </div>
         <button onClick={() => setIsFlagStatusOpen(false)}>&#215;</button>
       </div>
@@ -83,15 +98,19 @@ function Challenges({ challenges }) {
 
   return (
     <div className="subTopic">
-      {challenges && challenges.map((challenge, index) => (
-        <div
-          key={index}
-          className="challenges"
-          onClick={() => togglePopup(challenge)}
-        >
-          {challenge}
-        </div>
-      ))}
+      {challenges && challenges.map((challenge, index) => {
+        const isSolved = solvedFlags.includes(challenge);
+
+        return (
+          <div
+            key={index}
+            className={`challenges ${isSolved ? 'green' : ''}`}
+            onClick={() => togglePopup(challenge)}
+          >
+            {challenge}
+          </div>
+        );
+      })}
 
       {popupContent}
 

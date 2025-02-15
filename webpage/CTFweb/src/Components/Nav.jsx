@@ -7,12 +7,12 @@ function Nav() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Effect hook to check if the username exists in sessionStorage
+  // Effect hook to check if the username and points exists in sessionStorage
   useEffect(() => {
-    const username = sessionStorage.getItem("username"); // Check for the username in sessionStorage
-    console.log("Username in useEffect:", username); // Debugging line to check the username value
-    setIsAuthenticated(!!username); // Set authentication state based on the existence of username
-  }, [sessionStorage.getItem("username")]); // Dependency on sessionStorage username
+    const username = sessionStorage.getItem("username");
+    console.log("Username in useEffect:", username);
+    setIsAuthenticated(!!username);
+  }, [sessionStorage.getItem('username')]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -23,8 +23,8 @@ function Nav() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("username"); // Remove username from sessionStorage on logout
-    console.log("Logged out, username removed:", sessionStorage.getItem("username")); // Debugging line
+    sessionStorage.removeItem("username");
+    console.log("Logged out, username removed:", sessionStorage.getItem("username"));
     setIsAuthenticated(false);
     navigate("/login"); // Redirect to login after logout
   };
@@ -50,7 +50,7 @@ function Nav() {
           <Link to="/teams" className="nav-link" onClick={closeDropdown}>
             Teams
           </Link>
-          <Link to="/" className="nav-link" onClick={closeDropdown}>
+          <Link to="/scoreboard" className="nav-link" onClick={closeDropdown}>
             Scoreboard
           </Link>
           <Link to="/challenges" className="nav-link" onClick={closeDropdown}>

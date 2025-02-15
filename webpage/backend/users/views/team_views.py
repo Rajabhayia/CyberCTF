@@ -55,7 +55,11 @@ def joinTeam(request):
         mydb = get_database('usersData')
         teamCollection = mydb.get_collection('userTeam')
         
-        collected_team = teamCollection.find_one({'TeamName': teamName}, {'TeamName': 1, 'leaderName': 1, 'request': 1, '_id': 0})
+        collected_team = teamCollection.find_one({'TeamName': teamName}, {'TeamName': 1, 'leaderName': 1, 'request': 1, 'members':1, '_id': 0})
+        for keys,values in collected_team.items():
+            if keys == 'members':
+                if len(values) >= 2:
+                    return Response({'detail': 'Team full request another team'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         
         mycol = mydb.get_collection('userCollection')
         data_username = mycol.find_one({'username': username}, {'username': 1, 'team': 1, 'points': 1, '_id': 0})

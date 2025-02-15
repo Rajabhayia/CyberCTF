@@ -1,24 +1,32 @@
 /* Main container */
 .topics {
-  margin: 1rem;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem 0rem;
   border-radius: 10px;
   cursor: default;
+  width: 80%;
 }
+
 
 /* Topic headers container */
 .topicHeaders {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 10px;
   width: 100%;
   text-align: center;
   cursor: default;
+}
+
+.topicContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Main topic text style */

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './signup.css';
 
 function Profile() {
-  const { userData, error } = FetchUsers();  // Call the custom hook
+  const { userData, error } = FetchUsers();
   const navigate = useNavigate();
 
   if (error) {
