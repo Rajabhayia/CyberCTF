@@ -5,7 +5,6 @@ import FetchUsers from "./fetchAPIs/FetchUsers";
 import CreateTeam from "./teamAPIs/createTeam";
 import JoinTeam from "./teamAPIs/joinTeam";
 import RevokeRequest from "./teamAPIs/revokeRequest";
-import LeaderApproval from "./teamAPIs/leaderApproval";
 import TeamDetails from "./teamAPIs/teamDetails";
 
 const Team = () => {

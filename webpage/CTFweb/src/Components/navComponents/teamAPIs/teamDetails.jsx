@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LeaderApproval from "./leaderApproval";
 import HandleRemoval from "./handleRemove";
+import icon from '../../../assets/icon.jpg'
 import './team.css';
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -111,6 +112,22 @@ function TeamDetails({ teamName }) {
             } else {
                 content = <p>No members available.</p>;
             }
+        } else if (type === 'Chat'){
+            content = () => (
+                <div className="teamChat">
+                    <div className="chatBox"></div>
+                    <div className="typeBox">
+                        <div className="typeBox-content">
+                            <form>
+                                <input type="text" />
+                            </form>
+                        </div>
+                        <div className="typeBox-icon">
+                            <img src={icon} alt="error" />
+                        </div>
+                    </div>
+                </div>
+            )
         }
 
         setPopupContent(content);
@@ -160,12 +177,21 @@ function TeamDetails({ teamName }) {
                     )}
                 </p>
             </div>
+            <div className="subteamDetails">
+                <p>
+                    <button onClick={() => handlePopup('Chat')} className="viewRequestButton">
+                        Chat
+                    </button>
+                </p>
+            </div>
 
             {showPopup && (
                 <div className="popup-teamDetails">
                     <div className="popup-content-teamdetails">
-                        <button onClick={closePopup}>&#215;</button>
-                        <div className="fetched-team-users">{popupContent}</div>
+                        <div className="fetched-team-users">
+                            <button onClick={closePopup}>&#215;</button>
+                            {popupContent}
+                        </div>
                     </div>
                 </div>
             )}

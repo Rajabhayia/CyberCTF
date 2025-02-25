@@ -3,6 +3,7 @@ from django.urls import path
 from .views import login, signup, profile
 from .views import createTeam, joinTeam, leaderApproval, rejectPendingRequest
 from .views import fetchTeamDetails, deleteRequest, handleRemoval
+from .views import load_topics, checkFlag
 
 urlpatterns = [
     path('signup/', signup, name='signup'),
@@ -15,4 +16,6 @@ urlpatterns = [
     path('deleteRequest/', deleteRequest, name='deleteRequest'),
     path('rejectPendingRequest/', rejectPendingRequest, name='rejectPendingRequest'),
     path('handleRemoval/', handleRemoval, name='handleRemoval' ),
+    path('challengesData/', load_topics, name='load_topics'),
+    path('checkFlag/', checkFlag, name='checkFlag' ),
 ]

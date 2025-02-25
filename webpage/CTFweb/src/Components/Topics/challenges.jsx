@@ -22,7 +22,7 @@ function Challenges({ challenges, solvedFlags, updateSolvedFlags }) {
 
     const challengeID = selectedChallenge; 
 
-    const response = await fetch(`${apiUrl}challenges/checkFlag/`, {
+    const response = await fetch(`${apiUrl}users/checkFlag/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,6 +42,11 @@ function Challenges({ challenges, solvedFlags, updateSolvedFlags }) {
       }
     }
     setIsFlagStatusOpen(true);
+
+    setTimeout(() => {
+      setIsFlagStatusOpen(false);
+    }, 1000 );
+
   };
 
   // Challenge Popup Content

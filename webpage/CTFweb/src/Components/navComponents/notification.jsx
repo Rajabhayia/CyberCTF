@@ -1,5 +1,4 @@
 import React from "react";
-import LeaderApproval from "./teamAPIs/leaderApproval";
 import './signup.css'
 
 function Notification() {

@@ -14,7 +14,7 @@ function Topics() {
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const response = await fetch(`${apiUrl}challenges/challengesData/?userName=${username}`, {
+        const response = await fetch(`${apiUrl}users/challengesData/?userName=${username}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function Topics() {
       } catch (error) {
         console.error('Error fetching challenges:', error);
         setError('There was an error fetching the challenges.');
-      }
+      } 
     };
 
     fetchChallenges();

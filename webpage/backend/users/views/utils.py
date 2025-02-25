@@ -12,3 +12,4 @@ def load_user_data(username):
     except Exception as e:
         print(f"Error loading user data: {e}")
         return None
+    

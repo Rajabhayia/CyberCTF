@@ -43,7 +43,7 @@
     border: 2px solid rgb(34, 32, 32);
     box-shadow: 0px 0px 10px rgb(33, 33, 33);
     color: rgb(162, 173, 183);
-    height: 3.8rem;
+    height: 3rem;
     width: 60%;
     border-radius: 10px;
     font-size: 18px;
@@ -51,7 +51,6 @@
 }
 
 .subteamDetails button:hover {
-    height: 3.5rem;
     width: 55%;
     cursor: pointer;
     font-size: 15px;
@@ -98,7 +97,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure the popup is on top of all other content */
+    z-index: 9999;
 }
 
 /* Popup content box */
@@ -109,10 +108,10 @@
     align-items: end;
     gap: 1rem;
     background-color: rgb(52, 52, 52);
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     height: 70vh;
-    width: 90%;
+    width: 85%;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -130,6 +129,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: flex-end;
 }
 
 .fetched-team-users{
@@ -137,9 +137,9 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    padding-left: 2rem;
+    padding-left: 3rem;
     gap: 2rem;
-    height: 50vh;
+    height: 66vh;
     width: 100%;
 
 }
@@ -150,7 +150,7 @@
     align-items: start;
     justify-content: start;
     gap: 1rem;
-    height: 29vh;
+    height: 23vh;
     width: 45%;
     padding: 1rem;
     background: rgb(38, 38, 38);
@@ -271,4 +271,78 @@
     width: 100%;
     color: red;
     font-size: 12px;
+}
+
+.teamChat {
+    width: 90%;
+    margin: 0px;
+    height: 55vh;
+    background: rgb(23, 23, 23);
+    box-shadow: 0px 0px 30px black;
+    border-radius: 20px;
+    border: 2px solid rgb(101, 99, 99);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamChat .chatBox {
+    width: 100%;
+    height: 47vh;
+    border-radius: 20px;
+}
+
+.teamChat .typeBox {
+    width: 100%;
+    height: 8vh;
+    border-radius: 20px;
+    background: rgb(42, 41, 41);
+}
+
+.typeBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.typeBox-content {
+    width: 90%;
+    height: 8vh;
+    border-radius: 20px;
+}
+
+.typeBox-content form {
+    width: 100%;
+    height: 8vh;
+    border-radius: 20px;
+}
+
+.typeBox-content form input{
+    width: 100%;
+    height: 8vh;
+    border-radius: 20px;
+    background: rgb(21, 21, 21);
+    color: rgb(158, 172, 184);
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid rgb(94, 110, 124);
+}
+
+.typeBox-icon {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typeBox img{
+    height: 3rem;
+    width: 80%;
+}
+
+.typeBox img:hover {
+    height: 2.9rem;
+    width: 75%;
+    cursor: pointer;
 }
